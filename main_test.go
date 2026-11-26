@@ -10,7 +10,7 @@ import (
 func TestUserWildcard(t *testing.T) {
 	rec := httptest.NewRecorder()
 	newMux().ServeHTTP(rec, httptest.NewRequest(http.MethodGet, "/users/42", nil))
-	if rec.Code != http.StatusOK || !strings.Contains(rec.Body.String(), "`42`") && !strings.Contains(rec.Body.String(), "42") {
+	if rec.Code != http.StatusOK || !strings.Contains(rec.Body.String(), "\"id\":\"42\"") {
 		t.Fatalf("unexpected response: %d %s", rec.Code, rec.Body.String())
 	}
 }
